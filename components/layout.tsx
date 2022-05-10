@@ -10,7 +10,7 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
     <>
       <CssBaseline />
       <Header />
-      <Container maxWidth="lg">
+      <Container>
         <Box p={1}>{children}</Box>
       </Container>
     </>

@@ -6,8 +6,6 @@ import {
   CardActions,
   CardContent,
   Grid,
-  List,
-  ListItemText,
   Typography,
 } from '@mui/material'
 import Link from 'next/link'
@@ -15,6 +13,7 @@ import Image from 'next/image'
 import React from 'react'
 import Amiibo from '../models/amiibo'
 import { ComponentProps } from '../global'
+import AmiiboImage from './amiibo-image'
 
 type AmiiboItemProps = ComponentProps & {
   amiibo: Amiibo
@@ -25,7 +24,11 @@ const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
 
   return (
     <Grid item>
-      <Card>
+      <Card
+        sx={{
+          width: 250,
+        }}
+      >
         <Link
           href={{
             pathname: '/products/[id]',
@@ -38,12 +41,7 @@ const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
               pt={1}
               sx={{ justifyContent: 'center', display: 'flex' }}
             >
-              <Image
-                src={amiibo.image}
-                alt={`Imagen para el personaje ${amiibo.character}`}
-                width={150}
-                height={200}
-              />
+              <AmiiboImage amiibo={amiibo} />
             </Box>
             <CardContent>
               <Typography gutterBottom variant="h5" component="div">
@@ -60,9 +58,8 @@ const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
             </CardContent>
           </CardActionArea>
         </Link>
-        <CardActions disableSpacing sx={{ justifyContent: 'space-around' }}>
+        <CardActions disableSpacing sx={{ justifyContent: 'center' }}>
           <Button size="small">Agregar al carro</Button>
-          <Button size="small">Ver detalles</Button>
         </CardActions>
       </Card>
     </Grid>

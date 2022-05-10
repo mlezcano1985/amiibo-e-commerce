@@ -7,7 +7,7 @@ export default function Header(): JSX.Element {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" color="inherit" component="div">
-            Amiibo
+            Tienda Amiibo
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: 'flex' }}>

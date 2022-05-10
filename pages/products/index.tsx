@@ -2,22 +2,15 @@ import type { NextPage } from 'next'
 import { ReactElement, ReactNode, useEffect, useState } from 'react'
 import AmiiboList from '../../components/amiibo-list'
 import WithLayout from '../../components/with-layout'
-import Amiibo from '../../models/amiibo'
-import service from '../../services/amiibo-service'
+import { useGetAllAmiibosQuery } from '../../services/amiibo-api'
 
 const Products: NextPage = () => {
-  const [items, setItems] = useState<Amiibo[]>([])
+  const { isFetching, data = [], error } = useGetAllAmiibosQuery(undefined)
 
-  useEffect(() => {
-    async function fetchProducts() {
-      const products = await service.getAll()
-      setItems(products)
-    }
+  if (isFetching) return <>Loading...</>
+  if (error) return <>Oh no, there was an error</>
 
-    fetchProducts()
-  }, [])
-
-  return <AmiiboList items={items} />
+  return <AmiiboList items={data} />
 }
 
 export default WithLayout(Products)
