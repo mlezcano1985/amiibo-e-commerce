@@ -1,6 +1,7 @@
 import { Box, Divider, Grid, Typography } from '@mui/material'
 import { ComponentProps } from '../global'
 import Amiibo from '../models/amiibo'
+import AddToCart from './add-to-cart'
 import AmiiboImage from './amiibo-image'
 
 type AmiiboDetailsProps = ComponentProps & {
@@ -25,6 +26,9 @@ const AmiiboDetails: React.FC<AmiiboDetailsProps> = ({ amiibo }) => {
             </Typography>
           </Box>
           <Divider />
+          <Box width={1} pt={1} sx={{ display: 'block' }}>
+            <AddToCart item={amiibo} />
+          </Box>
         </Grid>
       </Grid>
     </>

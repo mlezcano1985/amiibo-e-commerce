@@ -14,14 +14,13 @@ import React from 'react'
 import Amiibo from '../models/amiibo'
 import { ComponentProps } from '../global'
 import AmiiboImage from './amiibo-image'
+import AddToCart from './add-to-cart'
 
 type AmiiboItemProps = ComponentProps & {
   amiibo: Amiibo
 }
 
 const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
-  const url = `/products/${amiibo.id}`
-
   return (
     <Grid item>
       <Card
@@ -58,8 +57,9 @@ const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
             </CardContent>
           </CardActionArea>
         </Link>
-        <CardActions disableSpacing sx={{ justifyContent: 'center' }}>
-          <Button size="small">Agregar al carro</Button>
+        <CardActions disableSpacing>
+          {/* <Button variant="contained">Agregar al carro</Button> */}
+          <AddToCart item={amiibo} />
         </CardActions>
       </Card>
     </Grid>
