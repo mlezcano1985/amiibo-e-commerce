@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import Amiibo from '../../models/amiibo'
-import ShopingCartItem from '../../models/shoping-cart-item'
-import { RootState } from '../../store'
+import Amiibo from '../models/amiibo'
+import ShopingCartItem from '../models/shoping-cart-item'
+import { RootState } from '../store'
 
 type ShoppingCartState = {
   items: ShopingCartItem[]

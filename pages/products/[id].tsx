@@ -2,12 +2,12 @@ import { Box, Typography } from '@mui/material'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import AmiiboDetails from '../../components/amiibo-details'
-import Breadcrumbs from '../../components/Breadcrumbs'
+import Breadcrumbs from '../../components/breadcrumbs'
 import WithLayout from '../../components/with-layout'
 import Amiibo from '../../models/amiibo'
 import { useGetAmiiboByIdQuery } from '../../services/amiibo-api'
 
-const ProductDetail: NextPage = (props) => {
+const ProductDetailPage: NextPage = (props) => {
   const router = useRouter()
   const { id } = router.query
 
@@ -32,11 +32,18 @@ const ProductDetail: NextPage = (props) => {
           },
         ]}
       />
-      <Box width={1} height={1} p={4} mt={4} bgcolor="white" borderRadius={1}>
+      <Box
+        width={1}
+        height={1}
+        p={4}
+        mt={4}
+        bgcolor="background.paper"
+        borderRadius={1}
+      >
         <AmiiboDetails amiibo={data as Amiibo} />
       </Box>
     </>
   )
 }
 
-export default WithLayout(ProductDetail)
+export default WithLayout(ProductDetailPage)

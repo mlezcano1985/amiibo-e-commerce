@@ -18,7 +18,7 @@ import {
   decrement,
   increment,
   selectCartItem,
-} from '../services/shopping-cart/shopping-cart-slice'
+} from '../services/shopping-cart-slice'
 import { useDispatch } from 'react-redux'
 
 type AddToCartProps = ComponentProps & {

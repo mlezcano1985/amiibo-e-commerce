@@ -1,10 +1,10 @@
-import { Badge, Box, Button, IconButton } from '@mui/material'
+import { Badge, IconButton } from '@mui/material'
 import React, { useState } from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 import ShopingCartItem from '../models/shoping-cart-item'
-import { selectCartItems } from '../services/shopping-cart/shopping-cart-slice'
+import { selectCartItems } from '../services/shopping-cart-slice'
 import ShoppingCartList from './shopping-cart-list'
 
 const ShoppingCart: React.FC = () => {

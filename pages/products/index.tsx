@@ -3,10 +3,10 @@ import AmiiboList from '../../components/amiibo-list'
 import WithLayout from '../../components/with-layout'
 import { useGetAllAmiibosQuery } from '../../services/amiibo-api'
 import Box from '@mui/material/Box'
-import Breadcrumbs from '../../components/Breadcrumbs'
+import Breadcrumbs from '../../components/breadcrumbs'
 import { Typography } from '@mui/material'
 
-const Products: NextPage = () => {
+const ProductsPage: NextPage = () => {
   const { isFetching, data = [], error } = useGetAllAmiibosQuery(undefined)
 
   if (isFetching) return <>Loading...</>
@@ -27,4 +27,4 @@ const Products: NextPage = () => {
   )
 }
 
-export default WithLayout(Products)
+export default WithLayout(ProductsPage)

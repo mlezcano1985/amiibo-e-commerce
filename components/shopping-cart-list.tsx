@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useDispatch } from 'react-redux'
 import { ComponentProps } from '../global'
 import ShopingCartItem from '../models/shoping-cart-item'
-import { clear } from '../services/shopping-cart/shopping-cart-slice'
+import { clear } from '../services/shopping-cart-slice'
 import ShoppingCartListItem from './shopping-cart-list-item'
 
 type ShoppingCartListProps = ComponentProps & {
