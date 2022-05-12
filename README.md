@@ -1,34 +1,97 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Amiibo E-Commerce
 
-## Getting Started
+Pequeño e-commerce utilizando como fuente de datos la API [https://www.amiiboapi.com](https://www.amiiboapi.com). Es un ejemplo básico, donde solo se abarca la parte Web.
 
-First, run the development server:
+## Stack Tecnológico utilizado
 
-```bash
-npm run dev
-# or
-yarn dev
+- [NodeJS](https://nodejs.org/en/): Versión 16 LTS.
+- [NextJS](https://nextjs.org): Framework para desarrollo de aplicaciones Web con [React](https://reactjs.org).
+- [Redux Toolkit](https://redux-toolkit.js.org/): Librería para el desarrollo con [Redux](https://redux.js.org/).
+- [VSCode](https://code.visualstudio.com): Editor de código.
+- [Docker](https://www.docker.com/): Ideal para despliegues y 0 dependencia tecnológica.
+
+## Funcionalidades
+
+- Listar productos provistos de la API amiboapi.
+- Mostrar los detalles de un producto.
+- Agregar los productos seleccionados al carro de compras.
+- Información básica para procesar una venta.
+
+## Dependencias
+
+- NodeJS: Si quiere levantar la aplicación en modo desarrollo. Requerido para la sección [¿Que debo hacer? > NodeJS](#nodejs).
+- Docker: Si quiere levantar la aplicación dockerizada. Requerido para la sección [¿Que debo hacer? > Docker](#docker).
+
+## ¿Que debo hacer?
+
+### NodeJS
+
+Descargar o clonar el repositorio. Ubicarse en la raíz del proyecto y abra una terminal. Ejecute el siguiente comando para instalar las dependencias:
+
+```sh
+npm i
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Luego que se instalen las dependecias, puede levantar la aplicación en:
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+**Modo desarrollo**
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```sh
+npm run dev
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Este comando levantará la aplicación en modo desarrollo, con detección de cambios para recargar los cambios en el navegador.
 
-## Learn More
+**Modo producción**
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para compilar la aplicación y dejar todas las optimizaciones listas
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```sh
+npm start
+```
 
-## Deploy on Vercel
+Para levantar la aplicación una vez compilada.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A fines de revisar el e-commerce, se recomienda utilizar el **modo de producción**, debido a que se hizo uso de [Static Site Generation (SSG)](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) + [Incremental Static Regeneration (ISR)](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration), con el objetivo de elevar al máximo el rendimiento de la aplicación :ok_hand:.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Luego que la aplicación este corriendo, acceda a [http://localhost:3000](http://localhost:3000) desde su navegador para visualizar la aplicación.
+
+### Docker
+
+Ubicarse en la raíz del proyecto y abra una terminal. Si tiene NodeJS instalado, ejecute los siguiente comandos:
+
+```sh
+npm run docker:build
+```
+
+Este comando construirá la imagen de la aplicación compilada.
+
+Luego para levantar la aplicación ejecute:
+
+```sh
+npm run docker:run
+```
+
+Con este comando se inicia el contenedor de docker donde se ejecutará la aplicación.
+
+En caso de no tener instalado npm, ejecute en la raíz del proyecto el comando para compilar la imagen docker de la aplicación
+
+```sh
+docker build --rm -t amiibo .
+```
+
+Una vez creada, ejecute el siguiente comando para levantar la aplicación mediante el contenedor de docker
+
+```sh
+docker run --rm -it -p 3000:3000 amiibo
+```
+
+Luego que el contenedor de docker este corriendo, acceda a [http://localhost:3000](http://localhost:3000) desde su navegador para visualizar la aplicación.
+
+## Feedbacks
+
+¿Algo que reportar? Déjame saber aquí :point_right: [Twitter](https://twitter.com/mlezcano1985).
