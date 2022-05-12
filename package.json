@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docker:build": "docker build --rm -t amiibo .",
+    "docker:build": "docker build --force-rm -t amiibo .",
     "docker:run": "docker run --rm -it -p 3000:3000 amiibo"
   },
   "dependencies": {

@@ -26,7 +26,7 @@ Pequeño e-commerce utilizando como fuente de datos la API [https://www.amiiboap
 
 ### NodeJS
 
-Descargar o clonar el repositorio. Ubicarse en la raíz del proyecto y abra una terminal. Ejecute el siguiente comando para instalar las dependencias:
+Descargar o clonar el repositorio. Ubicarse en la raíz del proyecto y abrir un terminal. Ejecute el siguiente comando para instalar las dependencias:
 
 ```sh
 npm i
@@ -40,7 +40,7 @@ Luego que se instalen las dependecias, puede levantar la aplicación en:
 npm run dev
 ```
 
-Este comando levantará la aplicación en modo desarrollo, con detección de cambios para recargar los cambios en el navegador.
+Este comando levantará la aplicación en modo desarrollo, con detección de cambios y recargas automáticas en el navegador.
 
 **Modo producción**
 
@@ -58,30 +58,14 @@ Para levantar la aplicación una vez compilada.
 
 A fines de revisar el e-commerce, se recomienda utilizar el **modo de producción**, debido a que se hizo uso de [Static Site Generation (SSG)](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) + [Incremental Static Regeneration (ISR)](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration), con el objetivo de elevar al máximo el rendimiento de la aplicación :ok_hand:.
 
-Luego que la aplicación este corriendo, acceda a [http://localhost:3000](http://localhost:3000) desde su navegador para visualizar la aplicación.
+Luego que la aplicación este corriendo, acceda a [http://localhost:3000](http://localhost:3000) desde su navegador para poder visualizarla.
 
 ### Docker
 
-Ubicarse en la raíz del proyecto y abra una terminal. Si tiene NodeJS instalado, ejecute los siguiente comandos:
+Abra un terminal y ejecute en la raíz del proyecto el comando para compilar la imagen docker de la aplicación
 
 ```sh
-npm run docker:build
-```
-
-Este comando construirá la imagen de la aplicación compilada.
-
-Luego para levantar la aplicación ejecute:
-
-```sh
-npm run docker:run
-```
-
-Con este comando se inicia el contenedor de docker donde se ejecutará la aplicación.
-
-En caso de no tener instalado npm, ejecute en la raíz del proyecto el comando para compilar la imagen docker de la aplicación
-
-```sh
-docker build --rm -t amiibo .
+docker build --force-rm -t amiibo .
 ```
 
 Una vez creada, ejecute el siguiente comando para levantar la aplicación mediante el contenedor de docker

@@ -54,6 +54,11 @@
       align-items: center;
       flex-grow: 1;
     }
+
+    .logo {
+      height: 1em;
+      margin-left: 0.5rem;
+    }
   }
 
   .grid {
@@ -90,11 +95,6 @@
         margin: 0;
         font-size: 1.25rem;
         line-height: 1.5;
-      }
-
-      .logo {
-        height: 1em;
-        margin-left: 0.5rem;
       }
     }
   }
