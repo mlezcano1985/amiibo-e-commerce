@@ -49,16 +49,10 @@ const AmiiboItem: React.FC<AmiiboItemProps> = ({ amiibo }) => {
               <Typography variant="body1" color="text.primary">
                 {amiibo.name}
               </Typography>
-              {/* <List>
-                  <ListItemText secondary={`Serie: ${amiibo.amiiboSeries}`} />
-                  <ListItemText secondary={`Personaje: ${amiibo.character}`} />
-                  <ListItemText secondary={`Juego: ${amiibo.gameSeries}`} />
-                </List> */}
             </CardContent>
           </CardActionArea>
         </Link>
         <CardActions disableSpacing>
-          {/* <Button variant="contained">Agregar al carro</Button> */}
           <AddToCart item={amiibo} />
         </CardActions>
       </Card>

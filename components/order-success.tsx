@@ -168,7 +168,7 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({
                       </TableCell>
                       <TableCell>{amount}</TableCell>
                       <TableCell>${item.price}</TableCell>
-                      <TableCell>{amount * item.price}</TableCell>
+                      <TableCell>${amount * item.price}</TableCell>
                     </TableRow>
                   )
                 })}
