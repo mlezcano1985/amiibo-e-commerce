@@ -11,7 +11,9 @@ export default function Layout({ children }: LayoutProps): JSX.Element {
       <CssBaseline />
       <Header />
       <Container>
-        <Box p={1}>{children}</Box>
+        <Box my={4} mx={2} p={1}>
+          {children}
+        </Box>
       </Container>
     </>
   )
