@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import AmiiboDetails from '../../components/amiibo-details'
 import Breadcrumbs from '../../components/breadcrumbs'
+import CircularLoading from '../../components/circular-loading'
 import WithLayout from '../../components/with-layout'
 import Amiibo from '../../models/amiibo'
 import { useGetAmiiboByIdQuery } from '../../services/amiibo-api'
@@ -15,7 +16,6 @@ const ProductDetailPage: NextPage = (props) => {
     skip: !router.isReady,
   })
 
-  if (isFetching || !router.isReady) return <>Loading...</>
   if (error) return <>Oh no, there was an error</>
 
   const title = data?.name
@@ -40,7 +40,11 @@ const ProductDetailPage: NextPage = (props) => {
         bgcolor="background.paper"
         borderRadius={1}
       >
-        <AmiiboDetails amiibo={data as Amiibo} />
+        {isFetching || !router.isReady ? (
+          <CircularLoading />
+        ) : (
+          <AmiiboDetails amiibo={data as Amiibo} />
+        )}
       </Box>
     </>
   )

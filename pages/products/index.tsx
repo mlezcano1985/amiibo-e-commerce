@@ -5,11 +5,11 @@ import { useGetAllAmiibosQuery } from '../../services/amiibo-api'
 import Box from '@mui/material/Box'
 import Breadcrumbs from '../../components/breadcrumbs'
 import { Typography } from '@mui/material'
+import CircularLoading from '../../components/circular-loading'
 
 const ProductsPage: NextPage = () => {
   const { isFetching, data = [], error } = useGetAllAmiibosQuery(undefined)
 
-  if (isFetching) return <>Loading...</>
   if (error) return <>Oh no, there was an error</>
 
   const title = 'Productos'
@@ -22,7 +22,7 @@ const ProductsPage: NextPage = () => {
           {title}
         </Typography>
       </Box>
-      <AmiiboList items={data} />
+      {isFetching ? <CircularLoading /> : <AmiiboList items={data} />}
     </>
   )
 }
