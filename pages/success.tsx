@@ -1,5 +1,5 @@
 import { Box, Container } from '@mui/material'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { useSelector } from 'react-redux'
 import OrderSuccess from '../components/order-success'
 import ShopingCartItem from '../models/shoping-cart-item'
@@ -24,6 +24,12 @@ const SuccessPage: NextPage = () => {
       </Container>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }
 
 export default SuccessPage

@@ -1,24 +1,21 @@
-import { Box, Typography } from '@mui/material'
-import { NextPage } from 'next'
+import { Box } from '@mui/material'
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { useRouter } from 'next/router'
 import AmiiboDetails from '../../components/amiibo-details'
 import Breadcrumbs from '../../components/breadcrumbs'
 import CircularLoading from '../../components/circular-loading'
 import WithLayout from '../../components/with-layout'
+import { ComponentProps } from '../../global'
 import Amiibo from '../../models/amiibo'
-import { useGetAmiiboByIdQuery } from '../../services/amiibo-api'
+import amiiboService from '../../services/amiibo-service'
 
-const ProductDetailPage: NextPage = (props) => {
+type ProductDetailPageProps = ComponentProps & {
+  data: Amiibo
+}
+const ProductDetailPage: NextPage<ProductDetailPageProps> = ({ data }) => {
   const router = useRouter()
-  const { id } = router.query
-
-  const { error, isFetching, data } = useGetAmiiboByIdQuery(id as string, {
-    skip: !router.isReady,
-  })
-
-  if (error) return <>Oh no, there was an error</>
-
   const title = data?.name
+  const pending = router.isFallback || !router.isReady
 
   return (
     <>
@@ -40,7 +37,7 @@ const ProductDetailPage: NextPage = (props) => {
         bgcolor="background.paper"
         borderRadius={1}
       >
-        {isFetching || !router.isReady ? (
+        {pending ? (
           <CircularLoading />
         ) : (
           <AmiiboDetails amiibo={data as Amiibo} />
@@ -48,6 +45,26 @@ const ProductDetailPage: NextPage = (props) => {
       </Box>
     </>
   )
+}
+
+export const getStaticPaths: GetStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: true,
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const id = params?.id as string
+  console.log(`Product ID ${id}: Revalidate data`)
+
+  const data = await amiiboService.getById(id)
+  return {
+    props: {
+      data,
+    },
+    revalidate: 10,
+  }
 }
 
 export default WithLayout(ProductDetailPage)

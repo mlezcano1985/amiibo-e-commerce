@@ -2,17 +2,16 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import Amiibo from '../models/amiibo'
 import AmiiboDto from '../models/amiibo-dto'
 import AmiiboListDto from '../models/amiibo-list-dto'
+import { toDomain } from '../tools'
 
-function randomIntFromInterval(min: number, max: number) {
-  return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-const toDomain = (dto: AmiiboDto): Amiibo => ({
-  ...dto,
-  id: `${dto.head}${dto.tail}`,
-  price: randomIntFromInterval(1000, 100000),
-})
-
+/**
+ * RTK Query (RDKQ)
+ * @see {@link https://redux-toolkit.js.org/tutorials/rtk-query}
+ *
+ * @description
+ * Se dejó de usar en favor de SSG (Static-site generation)
+ * @see {@link https://nextjs.org/docs/basic-features/data-fetching/get-static-props}
+ */
 const api = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'https://amiiboapi.com/api' }),
   reducerPath: 'amiiboApi',
@@ -20,7 +19,7 @@ const api = createApi({
     getAllAmiibos: build.query<Amiibo[], undefined>({
       query: () => '/amiibo',
       transformResponse: ({ amiibo }: AmiiboListDto) => {
-        return amiibo.map((dto): Amiibo => toDomain(dto))
+        return amiibo.map(toDomain)
       },
     }),
 

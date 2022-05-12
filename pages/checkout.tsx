@@ -1,5 +1,5 @@
 import { Box, Container, Typography } from '@mui/material'
-import { NextPage } from 'next'
+import { GetStaticProps, NextPage } from 'next'
 import { useSelector } from 'react-redux'
 import Breadcrumbs from '../components/breadcrumbs'
 import CheckoutForm from '../components/checkout-form'
@@ -29,6 +29,12 @@ const CheckoutPage: NextPage = () => {
       </Container>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {},
+  }
 }
 
 export default CheckoutPage

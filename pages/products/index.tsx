@@ -1,18 +1,22 @@
-import type { NextPage } from 'next'
+import type { NextPage, GetStaticProps } from 'next'
 import AmiiboList from '../../components/amiibo-list'
 import WithLayout from '../../components/with-layout'
-import { useGetAllAmiibosQuery } from '../../services/amiibo-api'
 import Box from '@mui/material/Box'
 import Breadcrumbs from '../../components/breadcrumbs'
 import { Typography } from '@mui/material'
 import CircularLoading from '../../components/circular-loading'
+import amiiboService from '../../services/amiibo-service'
+import Amiibo from '../../models/amiibo'
+import { useRouter } from 'next/router'
+import { ComponentProps } from '../../global'
 
-const ProductsPage: NextPage = () => {
-  const { isFetching, data = [], error } = useGetAllAmiibosQuery(undefined)
-
-  if (error) return <>Oh no, there was an error</>
-
+type ProductsPageProps = ComponentProps & {
+  data: Amiibo[]
+}
+const ProductsPage: NextPage<ProductsPageProps> = ({ data }) => {
+  const router = useRouter()
   const title = 'Productos'
+  const pending = router.isFallback || !router.isReady
 
   return (
     <>
@@ -22,9 +26,21 @@ const ProductsPage: NextPage = () => {
           {title}
         </Typography>
       </Box>
-      {isFetching ? <CircularLoading /> : <AmiiboList items={data} />}
+      {pending ? <CircularLoading /> : <AmiiboList items={data} />}
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  console.log('Products: Revalidate data')
+
+  const data = await amiiboService.getAll()
+  return {
+    props: {
+      data,
+    },
+    revalidate: 20,
+  }
 }
 
 export default WithLayout(ProductsPage)
