@@ -17,6 +17,9 @@ import {
 } from '@mui/material'
 import Link from 'next/link'
 import ShopingCartItem from '../models/shoping-cart-item'
+import { useDispatch } from 'react-redux'
+import { clear as clearCart } from '../services/shopping-cart-slice'
+import { clear as clearCheckout } from '../services/checkout-slice'
 
 type OrderSuccessProps = ComponentProps & {
   createdAt: Date
@@ -31,6 +34,13 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({
   const total = cartItems.reduce((prev, current) => {
     return prev + current.amount * current.item.price
   }, 0)
+
+  const distpach = useDispatch()
+
+  const reset = () => {
+    distpach(clearCart())
+    distpach(clearCheckout())
+  }
 
   return (
     <>
@@ -197,12 +207,14 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({
         >
           <Box p={2}>
             <Link href="/">
-              <Button color="primary">Inicio</Button>
+              <Button color="primary" onClick={reset}>
+                Inicio
+              </Button>
             </Link>
           </Box>
           <Box p={2}>
             <Link href="/products">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={reset}>
                 Seguir comprando
               </Button>
             </Link>

@@ -1,0 +1,15 @@
+node_modules
+package-lock.json
+.gitignore
+.vscode
+.prettierrc
+.prettierignore
+.eslintrc.json
+.next
+README.md
+.git
+coverage
+dist
+Dockerfile
+.dockerignore
+npm-debug.log
